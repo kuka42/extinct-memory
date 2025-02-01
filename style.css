@@ -1,0 +1,63 @@
+body {
+    background-image: url(pic/b.png);
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+	border: 0;
+}
+
+.memory-game {
+    display: grid;
+    grid-template-columns: repeat(8, 150px);
+    gap: 15px;
+}
+
+.memory-card {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Przednia strona karty - wierzch */
+.memory-card .front-face {
+    transform: rotateY(0deg);
+}
+
+/* Tylna strona karty - obraz pary */
+.memory-card .back-face {
+    display: block; /* Na początku widoczna */
+    transform: rotateY(180deg);
+}
+
+.memory-card img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 0px;
+}
+
+/* Kiedy karta jest kliknięta, odwracamy ją */
+.memory-card.flip .front-face {
+    display: none;
+}
+
+.memory-card.flip .back-face {
+    display: block;
+    transform: rotateY(0deg); /* Pokazuje tylną stronę */
+}
+
+/* Jeśli karta nie jest kliknięta, wyświetlamy tylko wierzch */
+.memory-card:not(.flip) .back-face {
+    display: none;
+}
